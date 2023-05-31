@@ -31,7 +31,16 @@ function Button({
       )}
       {...props}
     >
-      {Icon && <Icon />}
+      {Icon && (
+        <Icon
+          size={24}
+          className="
+            absolute
+            left-4
+            top-3
+          "
+        />
+      )}
       {children}
     </button>
   );

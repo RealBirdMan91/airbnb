@@ -14,15 +14,20 @@ const ToastMessage = ({
   description: ToastParams['description'];
 }) => (
   <>
-    <h4>{title}</h4>
-    {description && <span>{description}</span>}
+    <h4 className="font-semibold text-slate-700">{title}</h4>
+    {description && (
+      <span className="text-sm text-slate-500">{description}</span>
+    )}
   </>
 );
 
 export const useToast =
   () =>
   ({ title, description, status, ...props }: ToastParams) => {
-    toast[status](<ToastMessage title={title} description={description} />, {
-      ...props,
-    });
+    return toast[status](
+      <ToastMessage title={title} description={description} />,
+      {
+        ...props,
+      }
+    );
   };

@@ -10,6 +10,7 @@ import { useRegisterMutation } from '@/hooks/useAuth';
 import Modal from './Modal';
 import Heading from '../Heading';
 import Input from '../forms/Input';
+import Button from '../buttons/Button';
 
 function RegisterModal() {
   const { isOpen, onClose } = useRegisterModal();
@@ -23,7 +24,27 @@ function RegisterModal() {
   });
 
   function onSubmit(data: RegisterUserInput) {
-    console.log(data);
+    mutate(data);
+  }
+
+  function Footer() {
+    return (
+      <div className="mt-3 flex flex-col gap-4">
+        <hr />
+        <Button outline icon={FcGoogle}>
+          Continue with Google
+        </Button>
+        <Button outline icon={AiFillGithub}>
+          Continue with Github
+        </Button>
+        <div className="mt-4  text-center font-light text-neutral-500">
+          <p>
+            Already have an account?
+            <span className="ml-1 cursor-pointer text-blue-400">Log in</span>
+          </p>
+        </div>
+      </div>
+    );
   }
 
   return (
@@ -34,6 +55,7 @@ function RegisterModal() {
       actionLabel="Continue"
       onClose={onClose}
       onSubmit={handleSubmit(onSubmit)}
+      footer={<Footer />}
     >
       <div className="flex flex-col gap-4">
         <Heading title="Welcome to Airbnb" subtitle="Register to continue" />

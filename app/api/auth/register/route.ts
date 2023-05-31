@@ -9,12 +9,7 @@ interface IRequest extends NextRequest {
 export async function POST(request: IRequest) {
   const { email, password } = await request.json();
 
-  return NextResponse.json(
-    {
-      message: `User ${email} created`,
-    },
-    {
-      status: 201,
-    }
-  );
+  return NextResponse.json('Wrong user input', {
+    status: 422,
+  });
 }

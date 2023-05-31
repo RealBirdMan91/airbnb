@@ -1,6 +1,5 @@
 import { RegisterUserInput } from '@/types/user';
 import { useToast } from './useToast';
-import { useRouter } from 'next/navigation';
 import useRegisterModal from './useRegisterModal';
 import { register } from '@/api/auth';
 import { useMutation } from '@tanstack/react-query';
@@ -8,7 +7,6 @@ import { AxiosError } from 'axios';
 
 export function useRegisterMutation() {
   const toast = useToast();
-  const router = useRouter();
   const { onClose } = useRegisterModal();
 
   const mutation = useMutation({
@@ -20,12 +18,18 @@ export function useRegisterMutation() {
         status: 'success',
       });
       onClose();
-      router.push('/');
     },
     onError: (err: AxiosError) => {
+      if (err.response?.status === 422) {
+        return toast({
+          title: 'Wrong user credentials',
+          description: 'Falsche user eingabe',
+          status: 'error',
+        });
+      }
       toast({
         title: 'An error occurred.',
-        description: err.message || 'Something went wrong.',
+        description: 'Something went wrong.',
         status: 'error',
       });
     },
