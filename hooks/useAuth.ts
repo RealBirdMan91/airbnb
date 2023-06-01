@@ -13,6 +13,7 @@ import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import useLoginModal from './useLoginModal';
 import { useRouter } from 'next/navigation';
+import { signIn } from 'next-auth/react';
 
 export function useLoginMutation() {
   const toast = useToast();
@@ -70,10 +71,9 @@ export function useRegisterMutation() {
     resolver: zodResolver(RegisterUserSchema),
   });
   const { onClose } = useRegisterModal();
-
   const mutation = useMutation({
     mutationFn: (values: RegisterUserInput) => register(values),
-    onSuccess: () => {
+    onSuccess: async values => {
       toast({
         title: 'Account created.',
         description: "We've created your account for you.",

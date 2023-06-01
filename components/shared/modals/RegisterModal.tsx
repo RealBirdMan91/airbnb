@@ -9,6 +9,7 @@ import Modal from './Modal';
 import Heading from '../Heading';
 import Input from '../forms/Input';
 import Button from '../buttons/Button';
+import { signIn } from 'next-auth/react';
 
 function RegisterModal() {
   const { isOpen, onClose } = useRegisterModal();
@@ -26,7 +27,11 @@ function RegisterModal() {
         <Button outline icon={FcGoogle}>
           Continue with Google
         </Button>
-        <Button outline icon={AiFillGithub}>
+        <Button
+          outline
+          icon={AiFillGithub}
+          onClick={async () => await signIn('github')}
+        >
           Continue with Github
         </Button>
         <div className="mt-4  text-center font-light text-neutral-500">
