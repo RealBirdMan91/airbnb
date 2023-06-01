@@ -1,9 +1,12 @@
+import { get } from 'http';
 import Container from '../Container';
 import Logo from './Logo';
 import Search from './Search';
 import UserMenu from './UserMenu';
+import { getUserData } from '@/lib/auth';
 
-function Navbar() {
+async function Navbar() {
+  const user = await getUserData();
   return (
     <header className="fixed z-10 w-full border-b-[1px] bg-white py-4 shadow-sm">
       <Container
@@ -16,7 +19,7 @@ function Navbar() {
       >
         <Logo />
         <Search />
-        <UserMenu />
+        <UserMenu user={user} />
       </Container>
     </header>
   );

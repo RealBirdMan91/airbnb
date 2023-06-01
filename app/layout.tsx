@@ -3,6 +3,7 @@ import './globals.css';
 import { Nunito } from 'next/font/google';
 import Providers from './provider';
 import RegisterModal from '@/components/shared/modals/RegisterModal';
+import LoginModal from '@/components/shared/modals/LoginModal';
 
 const nunito = Nunito({ subsets: ['latin'] });
 
@@ -21,9 +22,11 @@ export default function RootLayout({
     <html lang="en">
       <body className={nunito.className}>
         <Providers>
+          {/* @ts-expect-error Server Component */}
           <Navbar />
           {children}
           <RegisterModal />
+          <LoginModal />
         </Providers>
       </body>
     </html>

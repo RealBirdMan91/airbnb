@@ -1,7 +1,7 @@
 import { ModalStore } from '@/types/model';
 import { create } from 'zustand';
 
-const useRegisterModal = create<ModalStore>(set => ({
+const useLoginModal = create<ModalStore>(set => ({
   isOpen: false,
   onOpen() {
     set({ isOpen: true });
@@ -11,4 +11,4 @@ const useRegisterModal = create<ModalStore>(set => ({
   },
 }));
 
-export default useRegisterModal;
+export default useLoginModal;

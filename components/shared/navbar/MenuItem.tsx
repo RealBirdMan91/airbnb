@@ -7,7 +7,11 @@ interface Props extends Container {
 function MenuItem({ children, onClick }: Props) {
   return (
     <div
-      onClick={onClick}
+      onClick={e => {
+        console.log('clicked');
+        e.stopPropagation();
+        onClick();
+      }}
       className="hove px-4 py-3 font-semibold transition hover:bg-neutral-300"
     >
       {children}

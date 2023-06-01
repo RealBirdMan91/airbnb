@@ -10,7 +10,6 @@ interface ProvidersProps {
 
 export default function Providers({ children }: ProvidersProps) {
   const [queryClient] = useState(() => new QueryClient());
-
   return (
     <>
       <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>

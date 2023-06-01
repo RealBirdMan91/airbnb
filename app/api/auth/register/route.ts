@@ -1,15 +1,31 @@
 import { RegisterUserInput } from '@/types/user';
-import { stat } from 'fs';
 import { NextRequest, NextResponse } from 'next/server';
+import bcrypt from 'bcrypt';
+import { db } from '@/lib/db';
 
 interface IRequest extends NextRequest {
   json: () => Promise<RegisterUserInput>;
 }
 
 export async function POST(request: IRequest) {
-  const { email, password } = await request.json();
+  const { email, password, name } = await request.json();
 
-  return NextResponse.json('Wrong user input', {
-    status: 422,
-  });
+  const hashedPassword = await bcrypt.hash(password, 12);
+
+  try {
+    const user = await db.user.create({
+      data: {
+        email,
+        password: hashedPassword,
+        name,
+      },
+    });
+    return NextResponse.json(user, {
+      status: 201,
+    });
+  } catch (err) {
+    return NextResponse.json('User already exsist', {
+      status: 422,
+    });
+  }
 }

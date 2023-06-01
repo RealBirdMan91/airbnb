@@ -2,20 +2,21 @@
 
 import { AiFillGithub } from 'react-icons/ai';
 import { FcGoogle } from 'react-icons/fc';
-import useRegisterModal from '@/hooks/useRegisterModal';
-import { RegisterUserInput } from '@/types/user';
-import { useRegisterMutation } from '@/hooks/useAuth';
+import useLoginModal from '@/hooks/useLoginModal';
+import { LoginUserInput } from '@/types/user';
+import { useLoginMutation } from '@/hooks/useAuth';
 import Modal from './Modal';
 import Heading from '../Heading';
 import Input from '../forms/Input';
 import Button from '../buttons/Button';
 
-function RegisterModal() {
-  const { isOpen, onClose } = useRegisterModal();
-  const { isLoading, mutate, registerForm, handleFormSubmit, formState } =
-    useRegisterMutation();
+function LoginModal() {
+  const { isOpen, onClose } = useLoginModal();
 
-  function onSubmit(data: RegisterUserInput) {
+  const { isLoading, mutate, registerForm, handleFormSubmit, formState } =
+    useLoginMutation();
+
+  function onSubmit(data: LoginUserInput) {
     mutate(data);
   }
 
@@ -29,12 +30,6 @@ function RegisterModal() {
         <Button outline icon={AiFillGithub}>
           Continue with Github
         </Button>
-        <div className="mt-4  text-center font-light text-neutral-500">
-          <p>
-            Already have an account?
-            <span className="ml-1 cursor-pointer text-blue-400">Log in</span>
-          </p>
-        </div>
       </div>
     );
   }
@@ -43,27 +38,20 @@ function RegisterModal() {
     <Modal
       disabled={isLoading}
       isOpen={isOpen}
-      title="Register"
+      title="Login"
       actionLabel="Continue"
       onClose={onClose}
       onSubmit={handleFormSubmit(onSubmit)}
       footer={<Footer />}
     >
       <div className="flex flex-col gap-4">
-        <Heading title="Welcome to Airbnb" subtitle="Register to continue" />
+        <Heading title="Welcome back" subtitle="Login to continue" />
         <Input
           id="email"
           {...registerForm('email')}
           error={formState.errors.email}
           placeholder="julian@web.de"
           type="email"
-        />
-        <Input
-          id="name"
-          {...registerForm('name')}
-          error={formState.errors.name}
-          placeholder="Julian Vogel"
-          type="text"
         />
         <Input
           id="password"
@@ -77,4 +65,4 @@ function RegisterModal() {
   );
 }
 
-export default RegisterModal;
+export default LoginModal;
