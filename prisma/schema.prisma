@@ -18,8 +18,70 @@ model User {
   emailVerified DateTime?
   image String?
   favoriteIds String[]
+
+  accounts Account[]
+  listings Listing[]
+  reservations Reservation[]
+  
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt  
+}
+
+model Account {
+  id       String    @id @default(uuid())
+  type    String
+  provider String
+  providerAccountId String
+
+
+  refresh_token String?
+  access_token String?
+  expires_at Int?
+  token_type String?
+  scope String?
+  id_token String?
+
+  userId   String
+  user User @relation(fields: [userId], references: [id],  onDelete: Cascade)
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+  @@unique([provider, providerAccountId])
+}
 
+model Listing{
+  id       String    @id @default(uuid())
+  title    String
+  description String
+  imageSrc String
+  category String
+  roomCount Int
+  bathroomCount Int
+  guestCount Int
+  locationValue String
+  price Int
+  reservations Reservation[]
+
+  userId   String
+  user User @relation(fields: [userId], references: [id],  onDelete: Cascade)
+
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Reservation{
+  id       String    @id @default(uuid())
+  startDate    DateTime
+  endDate DateTime
+  guestCount Int
+  totalPrice Int
   
+  listingId String
+  listing Listing @relation(fields: [listingId], references: [id],  onDelete: Cascade)
+  
+  userId   String
+  user User @relation(fields: [userId], references: [id],  onDelete: Cascade)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }

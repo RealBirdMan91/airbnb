@@ -1,4 +1,3 @@
-'use client';
 import { Transition } from '@headlessui/react';
 
 interface BackdropProps {
@@ -7,7 +6,6 @@ interface BackdropProps {
 }
 
 function Backdrop({ isOpen, children }: BackdropProps) {
-  console.log(isOpen);
   return (
     <Transition
       as="div"

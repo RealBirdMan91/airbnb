@@ -1,4 +1,3 @@
-'use client';
 import ModalFooter from './ModalFooter';
 import ModalHeader from './ModalHeader';
 import Backdrop from './Backdrop';
