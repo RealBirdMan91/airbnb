@@ -13,7 +13,6 @@ import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import useLoginModal from './useLoginModal';
 import { useRouter } from 'next/navigation';
-import { signIn } from 'next-auth/react';
 
 export function useLoginMutation() {
   const toast = useToast();
@@ -70,6 +69,7 @@ export function useRegisterMutation() {
   } = useForm<RegisterUserInput>({
     resolver: zodResolver(RegisterUserSchema),
   });
+
   const { onClose } = useRegisterModal();
   const mutation = useMutation({
     mutationFn: (values: RegisterUserInput) => register(values),

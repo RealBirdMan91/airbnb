@@ -21,7 +21,7 @@ function UserMenu({ user }: Props) {
 
   const toggleModal = (e: MouseEvent) => {
     if (menuRef.current?.contains(e.target as Node)) {
-      return setIsOpen(true);
+      return setIsOpen(prev => !prev);
     }
     return setIsOpen(false);
   };
@@ -46,7 +46,7 @@ function UserMenu({ user }: Props) {
         >
           <AiOutlineMenu />
           <div className="ml-4 hidden md:block">
-            <Avatar />
+            <Avatar src={user?.image} />
           </div>
         </div>
       </div>

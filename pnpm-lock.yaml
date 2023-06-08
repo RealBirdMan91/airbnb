@@ -17,6 +17,7 @@ specifiers:
   clsx: ^1.2.1
   eslint: 8.41.0
   eslint-config-next: 13.4.4
+  limiter: ^2.1.0
   next: 13.4.4
   next-auth: ^4.22.1
   postcss: 8.4.24
@@ -48,6 +49,7 @@ dependencies:
   clsx: 1.2.1
   eslint: 8.41.0
   eslint-config-next: 13.4.4_opaykosi7ysrbskpnffskmbrki
+  limiter: 2.1.0
   next: 13.4.4_biqbaboplfbrettd7655fr4n2y
   next-auth: 4.22.1_z4pol2qj2yv3um3jqqobs4b3eu
   postcss: 8.4.24
@@ -2038,6 +2040,10 @@ packages:
       object.assign: 4.1.4
     dev: false
 
+  /just-performance/4.3.0:
+    resolution: {integrity: sha512-L7RjvtJsL0QO8xFs5wEoDDzzJwoiowRw6Rn/GnvldlchS2JQr9wFYPiwZcDfrbbujEKqKN0tvENdbjXdYhDp5Q==}
+    dev: false
+
   /language-subtag-registry/0.3.22:
     resolution: {integrity: sha512-tN0MCzyWnoz/4nHS6uxdlFWoUZT7ABptwKPQ52Ea7URk6vll88bWBVhodtnlfEuCcKWNGoc+uGbw1cwa9IKh/w==}
     dev: false
@@ -2059,6 +2065,12 @@ packages:
   /lilconfig/2.1.0:
     resolution: {integrity: sha512-utWOt/GHzuUxnLKxB6dk81RoOeoNeHgbrXiuGk4yyF5qlRz+iIVWu56E2fqGHFrXz0QNUhLB/8nKqvRH66JKGQ==}
     engines: {node: '>=10'}
+    dev: false
+
+  /limiter/2.1.0:
+    resolution: {integrity: sha512-361TYz6iay6n+9KvUUImqdLuFigK+K79qrUtBsXhJTLdH4rIt/r1y8r1iozwh8KbZNpujbFTSh74mJ7bwbAMOw==}
+    dependencies:
+      just-performance: 4.3.0
     dev: false
 
   /lines-and-columns/1.2.4:

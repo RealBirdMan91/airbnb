@@ -25,7 +25,11 @@ function LoginModal() {
     return (
       <div className="mt-3 flex flex-col gap-4">
         <hr />
-        <Button outline icon={FcGoogle}>
+        <Button
+          outline
+          icon={FcGoogle}
+          onClick={async () => await signIn('google')}
+        >
           Continue with Google
         </Button>
         <Button
